@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppIcon256.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,6 +82,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\PixelPerfectTheme_ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\PixelPerfectTheme_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\PurpleTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +129,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\WindowButtons_Restore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ComboBoxButton_DropDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Window_Thumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppIcon256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
