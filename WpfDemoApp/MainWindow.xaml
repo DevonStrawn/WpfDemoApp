@@ -6,7 +6,9 @@
     <!-- TODO BONUS POINTS -stuff the first theme from the list of themes in here at startup, instead of hard-coding -->
     <Window.Resources>
         <ResourceDictionary>
-            <DoubleAnimation x:Key="SwitchThemeAnimation" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:4"/>
+            <Storyboard x:Key="SwitchThemeAnimation" TargetProperty="Opacity">
+                <DoubleAnimation From="0.0" To="1.0" Duration="0:0:3" />
+            </Storyboard>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/WpfDemoApp;component/Themes/PurpleTheme.xaml" />
@@ -27,7 +29,12 @@
 
         <!-- Right side -->
         <Grid Grid.Column="1" Background="{DynamicResource GlobalBackgroundBrush}">
-            <TextBlock Text="Hello World!" Foreground="{DynamicResource GlobalForegroundBrush}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="HelloWorldTextBlock" Text="Hello World!" Foreground="{DynamicResource GlobalForegroundBrush}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="{Binding Themes.CurrentItem, NotifyOnTargetUpdated=True}">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated" >
+                        <BeginStoryboard Storyboard="{StaticResource SwitchThemeAnimation}"/>
+                    </EventTrigger>
+                </TextBlock.Triggers>
             </TextBlock>
         </Grid>
 
