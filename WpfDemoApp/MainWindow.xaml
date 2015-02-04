@@ -1,13 +1,16 @@
 ﻿<Window x:Class="WpfDemoApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WPF Demo App" Height="351" Width="752">
+        Title="WPF Demo App"
+        Width="752" Height="351" MinWidth="400" MinHeight="200">
+    <!--WindowStyle="None" Style="{DynamicResource MyWindowStyle}" AllowsTransparency="True"-->
 
     <!-- TODO BONUS POINTS -stuff the first theme from the list of themes in here at startup, instead of hard-coding -->
     <Window.Resources>
         <ResourceDictionary>
+
             <Storyboard x:Key="SwitchThemeAnimation" TargetProperty="Opacity">
-                <DoubleAnimation From="0.0" To="1.0" Duration="0:0:3" />
+                <DoubleAnimation From="0.0" To="1.0" Duration="0:0:2" />
             </Storyboard>
 
             <ResourceDictionary.MergedDictionaries>

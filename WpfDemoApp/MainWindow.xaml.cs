@@ -25,6 +25,11 @@ namespace WpfDemoApp
 
 		public MainWindow()
 		{
+			this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, (command, executed) => SystemCommands.CloseWindow(this)));
+			this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, (command, executed) => SystemCommands.MaximizeWindow(this), this.OnCanResizeWindow));
+			this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, (command, executed) => SystemCommands.MinimizeWindow(this), this.OnCanMinimizeWindow));
+			this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, (command, executed) => SystemCommands.RestoreWindow(this), this.OnCanResizeWindow));
+ 
 			List<ThemeModel> themes = new List<ThemeModel>
 			{
 				new ThemeModel { Uri = new Uri("/WpfDemoApp;component/Themes/PurpleTheme.xaml", UriKind.RelativeOrAbsolute), Label = "Purple Theme" },
@@ -60,5 +65,17 @@ namespace WpfDemoApp
 			// Add new theme.
 			this.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = themeModel.Uri });
 		}
+
+		#region Window chrome button command handlers
+		private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = this.ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
+		}
+
+		private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = this.ResizeMode != ResizeMode.NoResize;
+		}
+		#endregion Window chrome button command handlers
 	}
 }
